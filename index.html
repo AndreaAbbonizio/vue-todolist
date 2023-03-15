@@ -15,8 +15,16 @@
         </h1>
 
         <ul>
-            <li v-for="todo in todos" :style="todo.done == true ? {textDecoration: 'line-through'} : '' "> {{todo.text}} - <span>x</span></li>
+            <li v-for="(todo, index ) in todos" :style="todo.done == true ? {textDecoration: 'line-through'} : '' " >
+                <span @click="changeDone(index)">
+                    {{todo.text}} - 
+                </span> 
+                <span @click="deleteTodo(index)">x</span>
+            </li>
         </ul>
+
+        <input v-model="newTodo" @keyup.enter="addToDo()" type="text">
+        <button @click="addToDo()">Aggiungi</button>
     </div>
     
 
